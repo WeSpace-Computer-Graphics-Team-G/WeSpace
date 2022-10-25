@@ -1,4 +1,5 @@
 import * as THREE from 'https://unpkg.com/three@0.138.3/build/three.module.js';
+import { OrbitControls } from "https://threejs.org/examples/jsm/controls/OrbitControls.js";
 
 class App {
     constructor(){
@@ -17,9 +18,10 @@ class App {
         this._setupLight();
         this._setupModel();
 
+        var controls = new OrbitControls( this._camera, renderer.domElement );
+
         window.onresize = this.resize.bind(this);
         this.resize();
-
         requestAnimationFrame(this.render.bind(this));
 
     }
