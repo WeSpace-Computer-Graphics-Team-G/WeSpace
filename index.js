@@ -83,6 +83,20 @@ class App {
         earthOrbit.position.x = 10;
         earthOrbit.add(earthMesh);
 
+        const hoonOrbit = new THREE.Object3D();
+        weSpace.add(hoonOrbit);
+
+        const hoonMaterial = new THREE.MeshPhongMaterial({
+            map: THREE.ImageUtils.loadTexture('./image/puple_sphere.png')
+        });
+
+        const hoonMesh = new THREE.Mesh(sphereGeometry,hoonMaterial);
+        hoonMesh.scale.set(3,3,3);
+        hoonOrbit.position.x = 20;
+        hoonOrbit.add(hoonMesh);
+
+      
+
         const moonOrbit = new THREE.Object3D();
         moonOrbit.position.x = 2;
         earthOrbit.add(moonOrbit);
@@ -98,6 +112,7 @@ class App {
         this._weSpace = weSpace;
         this._earthOrbit = earthOrbit;
         this._moonOrbit = moonOrbit;
+        this._hoonOrbit = hoonOrbit;
     }
 
     resize() {
