@@ -95,6 +95,20 @@ class App {
         hoonOrbit.position.x = 20;
         hoonOrbit.add(hoonMesh);
 
+
+        const qkrshOrbit = new THREE.Object3D();
+        weSpace.add(qkrshOrbit);
+
+        const qkrshMaterial = new THREE.MeshPhongMaterial({
+            map: THREE.ImageUtils.loadTexture('./image/white_sphere.jpg')
+        });
+
+        const qkrshMesh = new THREE.Mesh(sphereGeometry,qkrshMaterial);
+        qkrshMesh.scale.set(3,3,3);
+        qkrshOrbit.position.x = 30;
+        qkrshOrbit.add(qkrshMesh);
+
+
       
 
         const moonOrbit = new THREE.Object3D();
@@ -113,6 +127,8 @@ class App {
         this._earthOrbit = earthOrbit;
         this._moonOrbit = moonOrbit;
         this._hoonOrbit = hoonOrbit;
+        this._qkrshOrbit = qkrshOrbit;
+
     }
 
     resize() {
@@ -137,6 +153,8 @@ class App {
         this._weSpace.rotation.y = time / 2;
         this._earthOrbit.rotation.y = time * 2;
         this._moonOrbit.rotation.y = time * 5;
+        this._qkrshOrbit.rotation.y = time * 2;
+
     }
 
 }
