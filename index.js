@@ -72,47 +72,59 @@ class App {
         centerMesh.scale.set(3, 3, 3);
         weSpace.add(centerMesh);
 
-        const earthOrbit = new THREE.Object3D();
-        weSpace.add(earthOrbit);
-
-        const earthMaterial = new THREE.MeshPhongMaterial({
-            color: 0x2233ff, emissive: 0x112244, flatShading: true
-        });
-
-        const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial);
-        earthOrbit.position.x = 10;
-        earthOrbit.add(earthMesh);
-
+        //kyounghoon-------------------------------------------------------------------
+        //----------------------------------------------------------------------------
+        //basic_plant
         const hoonOrbit = new THREE.Object3D();
         weSpace.add(hoonOrbit);
 
         const hoonMaterial = new THREE.MeshPhongMaterial({
-            map: THREE.ImageUtils.loadTexture('./image/puple_sphere.png')
+            map: THREE.ImageUtils.loadTexture('./image/puple_basic.png')
         });
 
         const hoonMesh = new THREE.Mesh(sphereGeometry,hoonMaterial);
-        hoonMesh.scale.set(3,3,3);
+        hoonMesh.scale.set(5,5,5);
         hoonOrbit.position.x = 20;
         hoonOrbit.add(hoonMesh);
 
-      
+        //blueStar
+        const hoonOrbit2 = new THREE.Object3D();
+        weSpace.add(hoonOrbit2);
 
-        const moonOrbit = new THREE.Object3D();
-        moonOrbit.position.x = 2;
-        earthOrbit.add(moonOrbit);
+        const hoonMaterial2 = new THREE.MeshPhongMaterial({
+            map: THREE.ImageUtils.loadTexture('./image/star.png'),
+            transparent:true,
+            side : THREE.DoubleSide
+        });
+        
+        const hoonMesh2 = new THREE.Mesh(sphereGeometry,hoonMaterial2);
+        hoonMesh2.scale.set(5.05,5.05,5.05);
+        hoonOrbit2.position.x = 20;
+        hoonOrbit2.add(hoonMesh2);
 
-        const moonMaterial = new THREE.MeshPhongMaterial({
-            color: 0x888888, emissive: 0x222222, flatShading: true
+        //musical notes circle
+        const hoonOrbit3 = new THREE.Object3D();
+        weSpace.add(hoonOrbit3);
+
+        const hooncircle = new THREE.MeshPhongMaterial({
+            map: THREE.ImageUtils.loadTexture('./image/music_circle2.png'),
+            opacity : 0.7,
+            transparent : true,
+            side : THREE.DoubleSide,
         });
 
-        const moonMesh = new THREE.Mesh(sphereGeometry, moonMaterial);
-        moonMesh.scale.set(0.5, 0.5, 0.5);
-        moonOrbit.add(moonMesh);
+        const hoonMesh3 = new THREE.Mesh(sphereGeometry,hooncircle);
+        hoonMesh3.scale.set(7,7,7);
+        hoonOrbit3.position.x = 20;
+        hoonOrbit3.add(hoonMesh3);
+    //-----------------------------------------------------------------------------  
+
 
         this._weSpace = weSpace;
-        this._earthOrbit = earthOrbit;
-        this._moonOrbit = moonOrbit;
+        //kyounghoon
         this._hoonOrbit = hoonOrbit;
+        this._hoonOrbit2 = hoonOrbit2;
+        this._hoonOrbit3 = hoonOrbit3;
     }
 
     resize() {
@@ -135,8 +147,11 @@ class App {
         time *= 0.001
 
         this._weSpace.rotation.y = time / 2;
-        this._earthOrbit.rotation.y = time * 2;
-        this._moonOrbit.rotation.y = time * 5;
+
+         //kyounghoon rotation
+         this._hoonOrbit.rotation.y += 0.0005;
+         this._hoonOrbit2.rotation.y += 0.005;
+         this._hoonOrbit3.rotation.y -= 0.0005;
     }
 
 }
