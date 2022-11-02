@@ -204,36 +204,38 @@ class App {
         shOrbit.position.x = 60;
         shOrbit.add(shMesh);
 
-        //sh circle1
-        const shCircle = new THREE.Object3D();
-        weSpace.add(shCircle);
+    
+        //yellow circle
+        const shOrbit2 = new THREE.Object3D();
+        weSpace.add(shOrbit2);
 
         const shcircle = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/sh_circle1.png'),
+            opacity : 0.7,
             transparent : true,
             side : THREE.DoubleSide,
         });
 
-        const shCircleMesh1 = new THREE.Mesh(sphereGeometry,shcircle);
-        shCircleMesh1.scale.set(5.05,5.05,5.05);
-        shCircle.position.x = 60;
-        shCircle.add(shCircleMesh1);
+        const shMesh2 = new THREE.Mesh(sphereGeometry,shcircle);
+        shMesh2.scale.set(7,7,7);
+        shOrbit2.position.x = 60;
+        shOrbit2.add(shMesh2);
 
-        //sh circle2
-        const shCircle2 = new THREE.Object3D();
-        weSpace.add(minCircle2);
+        //blue star
+        const shOrbit3 = new THREE.Object3D();
+        weSpace.add(shOrbit3);
 
-        const shcircle2 = new THREE.MeshPhongMaterial({
+        const shcircle3 = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/sh_circle2.png'),
+            opacity : 0.7,
             transparent : true,
             side : THREE.DoubleSide,
         });
 
-        const shCircleMesh2 = new THREE.Mesh(sphereGeometry,shcircle2);
-        shCircleMesh2.scale.set(5.1,5.1,5.1);
-        shCircle2.position.x = 60;
-        shCircle2.add(shCircleMesh2);
-
+        const shMesh3 = new THREE.Mesh(sphereGeometry,shcircle3);
+        shMesh3.scale.set(7,7,7);
+        shOrbit3.position.x = 60;
+        shOrbit3.add(shMesh3);
 
       //------------------------------------------------------------------
 
@@ -251,8 +253,8 @@ class App {
 
          //sh-----------------------------------------
          this._shOrbit = shOrbit;
-         this._shCircle = shCircle;
-         this._shCircle2 = shCircle2;
+         this._shOrbit2 = shOrbit2;
+         this._shOrbit3 = shOrbit3;
 
     }
 
@@ -289,8 +291,8 @@ class App {
 
         // sh rotation
         this._shOrbit.rotation.y += 0.001;
-        this._shCircle.rotation.y += 0.005;
-        this._shCircle2.rotation.y -= 0.0005;
+        this._shOrbit2.rotation.y += 0.001;
+        this._shOrbit3.rotation.y += 0.0005;
     }
 
 }
