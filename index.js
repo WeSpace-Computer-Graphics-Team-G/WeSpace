@@ -37,7 +37,7 @@ class App {
         );
         // camera.position.z = 25;
 
-        camera.position.set(0, 25, 0);
+        camera.position.set(0, 50, 0);
         camera.up.set(0, 0, 1);
         camera.lookAt(0, 0, 0);
 
@@ -189,6 +189,54 @@ class App {
       //------------------------------------------------------------------
 
 
+      //shPlanet-----------------------------------------------------------------
+        //-------------------------------------------------------------------------
+        //basic
+        const shOrbit = new THREE.Object3D();
+        weSpace.add(shOrbit);
+
+        const shMaterial = new THREE.MeshPhongMaterial({
+            map: THREE.ImageUtils.loadTexture('./image/sh_basic.png')
+        });
+
+        const shMesh = new THREE.Mesh(sphereGeometry,shMaterial);
+        shMesh.scale.set(5,5,5);
+        shOrbit.position.x = 60;
+        shOrbit.add(shMesh);
+
+        //sh circle1
+        const shCircle = new THREE.Object3D();
+        weSpace.add(shCircle);
+
+        const shcircle = new THREE.MeshPhongMaterial({
+            map: THREE.ImageUtils.loadTexture('./image/sh_circle1.png'),
+            transparent : true,
+            side : THREE.DoubleSide,
+        });
+
+        const shCircleMesh1 = new THREE.Mesh(sphereGeometry,shcircle);
+        shCircleMesh1.scale.set(5.05,5.05,5.05);
+        shCircle.position.x = 60;
+        shCircle.add(shCircleMesh1);
+
+        //sh circle2
+        const shCircle2 = new THREE.Object3D();
+        weSpace.add(minCircle2);
+
+        const shcircle2 = new THREE.MeshPhongMaterial({
+            map: THREE.ImageUtils.loadTexture('./image/sh_circle2.png'),
+            transparent : true,
+            side : THREE.DoubleSide,
+        });
+
+        const shCircleMesh2 = new THREE.Mesh(sphereGeometry,shcircle2);
+        shCircleMesh2.scale.set(5.1,5.1,5.1);
+        shCircle2.position.x = 60;
+        shCircle2.add(shCircleMesh2);
+
+
+      //------------------------------------------------------------------
+
         this._weSpace = weSpace;
         //kyounghoon
         this._hoonOrbit = hoonOrbit;
@@ -200,6 +248,12 @@ class App {
         this._minCircle = minCircle;
         this._minCircle2 = minCircle2;
         this._minCircle3 = minCircle3;
+
+         //sh-----------------------------------------
+         this._shOrbit = shOrbit;
+         this._shCircle = shCircle;
+         this._shCircle2 = shCircle2;
+
     }
 
     resize() {
@@ -232,6 +286,11 @@ class App {
         this._minCircle.rotation.y -= 0.0008;
         this._minCircle2.rotation.y += 0.0008;
         this._minCircle3.rotation.y -= 0.0008;
+
+        // sh rotation
+        this._shOrbit.rotation.y += 0.001;
+        this._shCircle.rotation.y += 0.005;
+        this._shCircle2.rotation.y -= 0.0005;
     }
 
 }
