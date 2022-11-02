@@ -72,32 +72,88 @@ class App {
         centerMesh.scale.set(3, 3, 3);
         weSpace.add(centerMesh);
 
-        const earthOrbit = new THREE.Object3D();
-        weSpace.add(earthOrbit);
 
-        const earthMaterial = new THREE.MeshPhongMaterial({
-            color: 0x2233ff, emissive: 0x112244, flatShading: true
+        //minPlanet-----------------------------------------------------------------
+        //-------------------------------------------------------------------------
+        //basic
+        const minOrbit = new THREE.Object3D();
+        weSpace.add(minOrbit);
+
+        const minMaterial = new THREE.MeshPhongMaterial({
+            map: THREE.ImageUtils.loadTexture('./image/mint_basic.png')
         });
 
-        const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial);
-        earthOrbit.position.x = 10;
-        earthOrbit.add(earthMesh);
+        const minMesh = new THREE.Mesh(sphereGeometry,minMaterial);
+        minMesh.scale.set(5,5,5);
+        minOrbit.position.x = 30;
+        minOrbit.add(minMesh);
 
+<<<<<<< Updated upstream
         const moonOrbit = new THREE.Object3D();
         moonOrbit.position.x = 2;
         earthOrbit.add(moonOrbit);
+=======
+        //mint circle1
+        const minCircle = new THREE.Object3D();
+        weSpace.add(minCircle);
 
-        const moonMaterial = new THREE.MeshPhongMaterial({
-            color: 0x888888, emissive: 0x222222, flatShading: true
+        const mincircle = new THREE.MeshPhongMaterial({
+            map: THREE.ImageUtils.loadTexture('./image/mint_circle1.png'),
+            transparent : true,
+            side : THREE.DoubleSide,
         });
 
-        const moonMesh = new THREE.Mesh(sphereGeometry, moonMaterial);
-        moonMesh.scale.set(0.5, 0.5, 0.5);
-        moonOrbit.add(moonMesh);
+        const minCircleMesh1 = new THREE.Mesh(sphereGeometry,mincircle);
+        minCircleMesh1.scale.set(5.05,5.05,5.05);
+        minCircle.position.x = 30;
+        minCircle.add(minCircleMesh1);
 
+        //mint circle2
+        const minCircle2 = new THREE.Object3D();
+        weSpace.add(minCircle2);
+
+        const mincircle2 = new THREE.MeshPhongMaterial({
+            map: THREE.ImageUtils.loadTexture('./image/mint_circle2.png'),
+            transparent : true,
+            side : THREE.DoubleSide,
+        });
+
+        const minCircleMesh2 = new THREE.Mesh(sphereGeometry,mincircle2);
+        minCircleMesh2.scale.set(5.1,5.1,5.1);
+        minCircle2.position.x = 30;
+        minCircle2.add(minCircleMesh2);
+
+        //mint circle3
+        const minCircle3 = new THREE.Object3D();
+        weSpace.add(minCircle3);
+>>>>>>> Stashed changes
+
+        const mincircle3 = new THREE.MeshPhongMaterial({
+            map: THREE.ImageUtils.loadTexture('./image/mint_circle3.png'),
+            transparent : true,
+            side : THREE.DoubleSide,
+        });
+
+        const minCircleMesh3 = new THREE.Mesh(sphereGeometry,mincircle3);
+        minCircleMesh3.scale.set(5.15,5.15,5.15);
+        minCircle3.position.x = 30;
+        minCircle3.add(minCircleMesh3);
+
+      //------------------------------------------------------------------
+
+      
         this._weSpace = weSpace;
+<<<<<<< Updated upstream
         this._earthOrbit = earthOrbit;
         this._moonOrbit = moonOrbit;
+=======
+
+        //min-----------------------------------------
+        this._minOrbit = minOrbit;
+        this._minCircle = minCircle;
+        this._minCircle2 = minCircle2;
+        this._minCircle3 = minCircle3;
+>>>>>>> Stashed changes
     }
 
     resize() {
@@ -120,8 +176,12 @@ class App {
         time *= 0.001
 
         this._weSpace.rotation.y = time / 2;
-        this._earthOrbit.rotation.y = time * 2;
-        this._moonOrbit.rotation.y = time * 5;
+
+        //min---------------------------------------------------
+        this._minCircle.rotation.y -= 0.005;
+        this._minCircle2.rotation.y += 0.005;
+        this._minCircle3.rotation.y -= 0.005;
+
     }
 
 }
