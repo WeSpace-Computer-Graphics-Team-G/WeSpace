@@ -52,6 +52,10 @@ class App {
         const light = new THREE.DirectionalLight(color, intensity);
         light.position.set(-1, 2, 4);
         this._scene.add(light);
+
+        // add ambient
+        const ambientLight = new THREE.AmbientLight(0x404040);
+        this._scene.add(ambientLight);
     }
 
 
@@ -64,13 +68,16 @@ class App {
         const heightSegments = 24;
         const sphereGeometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
 
+        const centerOrbit = new THREE.Object3D();
+        weSpace.add(centerOrbit);
+
         const sunMaterial = new THREE.MeshPhongMaterial({
             emissive: 0xffff00, flatShading: true
         });
 
-        const centerMesh = new THREE.Mesh(sphereGeometry, sunMaterial);
-        centerMesh.scale.set(3, 3, 3);
-        weSpace.add(centerMesh);
+        const sunMesh = new THREE.Mesh(sphereGeometry, sunMaterial);
+        sunMesh.scale.set(3, 3, 3);
+        weSpace.add(sunMesh);
 
         //kyounghoon-------------------------------------------------------------------
         //----------------------------------------------------------------------------
@@ -119,12 +126,80 @@ class App {
         hoonOrbit3.add(hoonMesh3);
     //-----------------------------------------------------------------------------  
 
+    //minPlanet-----------------------------------------------------------------
+        //-------------------------------------------------------------------------
+        //basic
+        const minOrbit = new THREE.Object3D();
+        weSpace.add(minOrbit);
+
+        const minMaterial = new THREE.MeshPhongMaterial({
+            map: THREE.ImageUtils.loadTexture('./image/mint_basic.png')
+        });
+
+        const minMesh = new THREE.Mesh(sphereGeometry,minMaterial);
+        minMesh.scale.set(5,5,5);
+        minOrbit.position.x = 40;
+        minOrbit.add(minMesh);
+
+        //mint circle1
+        const minCircle = new THREE.Object3D();
+        weSpace.add(minCircle);
+
+        const mincircle = new THREE.MeshPhongMaterial({
+            map: THREE.ImageUtils.loadTexture('./image/mint_circle1.png'),
+            transparent : true,
+            side : THREE.DoubleSide,
+        });
+
+        const minCircleMesh1 = new THREE.Mesh(sphereGeometry,mincircle);
+        minCircleMesh1.scale.set(5.05,5.05,5.05);
+        minCircle.position.x = 40;
+        minCircle.add(minCircleMesh1);
+
+        //mint circle2
+        const minCircle2 = new THREE.Object3D();
+        weSpace.add(minCircle2);
+
+        const mincircle2 = new THREE.MeshPhongMaterial({
+            map: THREE.ImageUtils.loadTexture('./image/mint_circle2.png'),
+            transparent : true,
+            side : THREE.DoubleSide,
+        });
+
+        const minCircleMesh2 = new THREE.Mesh(sphereGeometry,mincircle2);
+        minCircleMesh2.scale.set(5.1,5.1,5.1);
+        minCircle2.position.x = 40;
+        minCircle2.add(minCircleMesh2);
+
+        //mint circle3
+        const minCircle3 = new THREE.Object3D();
+        weSpace.add(minCircle3);
+
+        const mincircle3 = new THREE.MeshPhongMaterial({
+            map: THREE.ImageUtils.loadTexture('./image/mint_circle3.png'),
+            transparent : true,
+            side : THREE.DoubleSide,
+        });
+
+        const minCircleMesh3 = new THREE.Mesh(sphereGeometry,mincircle3);
+        minCircleMesh3.scale.set(5.15,5.15,5.15);
+        minCircle3.position.x = 40;
+        minCircle3.add(minCircleMesh3);
+
+      //------------------------------------------------------------------
+
 
         this._weSpace = weSpace;
         //kyounghoon
         this._hoonOrbit = hoonOrbit;
         this._hoonOrbit2 = hoonOrbit2;
         this._hoonOrbit3 = hoonOrbit3;
+
+        //min-----------------------------------------
+        this._minOrbit = minOrbit;
+        this._minCircle = minCircle;
+        this._minCircle2 = minCircle2;
+        this._minCircle3 = minCircle3;
     }
 
     resize() {
@@ -152,6 +227,11 @@ class App {
          this._hoonOrbit.rotation.y += 0.0005;
          this._hoonOrbit2.rotation.y += 0.005;
          this._hoonOrbit3.rotation.y -= 0.0005;
+
+         // min rotaion
+        this._minCircle.rotation.y -= 0.0008;
+        this._minCircle2.rotation.y += 0.0008;
+        this._minCircle3.rotation.y -= 0.0008;
     }
 
 }
