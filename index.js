@@ -66,6 +66,9 @@ class App {
         const hyun = new THREE.Object3D();
         this._scene.add(hyun);
 
+        const hoon = new THREE.Object3D();
+        this._scene.add(hoon);
+
         const radius = 1;
         const widthSegments = 24;
         const heightSegments = 24;
@@ -87,20 +90,20 @@ class App {
         //----------------------------------------------------------------------------
         //basic_plant
         const hoonOrbit = new THREE.Object3D();
-        sun.add(hoonOrbit);
+        hoon.add(hoonOrbit);
 
         const hoonMaterial = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/puple_basic.png')
         });
 
         const hoonMesh = new THREE.Mesh(sphereGeometry, hoonMaterial);
-        hoonMesh.scale.set(5, 5, 5);
+        hoonMesh.scale.set(3, 3, 3);
         hoonOrbit.position.x = 20;
         hoonOrbit.add(hoonMesh);
 
         //blueStar
         const hoonOrbit2 = new THREE.Object3D();
-        sun.add(hoonOrbit2);
+        hoon.add(hoonOrbit2);
 
         const hoonMaterial2 = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/star.png'),
@@ -109,13 +112,13 @@ class App {
         });
 
         const hoonMesh2 = new THREE.Mesh(sphereGeometry, hoonMaterial2);
-        hoonMesh2.scale.set(5.05, 5.05, 5.05);
+        hoonMesh2.scale.set(3.5, 3.5, 3.5);
         hoonOrbit2.position.x = 20;
         hoonOrbit2.add(hoonMesh2);
 
         //musical notes circle
         const hoonOrbit3 = new THREE.Object3D();
-        sun.add(hoonOrbit3);
+        hoon.add(hoonOrbit3);
 
         const hooncircle = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/music_circle2.png'),
@@ -125,7 +128,7 @@ class App {
         });
 
         const hoonMesh3 = new THREE.Mesh(sphereGeometry, hooncircle);
-        hoonMesh3.scale.set(7, 7, 7);
+        hoonMesh3.scale.set(5, 5, 5);
         hoonOrbit3.position.x = 20;
         hoonOrbit3.add(hoonMesh3);
         //-----------------------------------------------------------------------------
@@ -278,6 +281,7 @@ class App {
 
         this._sun = sun;
         //kyounghoon
+        this._hoon = hoon;
         this._hoonOrbit = hoonOrbit;
         this._hoonOrbit2 = hoonOrbit2;
         this._hoonOrbit3 = hoonOrbit3;
@@ -321,6 +325,7 @@ class App {
 
         this._sun.rotation.y = time / 2;
         this._hyun.rotation.y = time / 1.5;
+        this._hoon.rotation.y = time / 4;
 
         //kyounghoon rotation
         this._hoonOrbit.rotation.y += 0.0005;
