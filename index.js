@@ -57,6 +57,10 @@ class App {
         const weSpace = new THREE.Object3D();
         this._scene.add(weSpace);
 
+        //kyounghoon ---------------------------
+        const hoon = new THREE.Object3D();
+        this._scene.add(hoon);
+
         const radius = 1;
         const widthSegments = 24;
         const heightSegments = 24;
@@ -85,35 +89,58 @@ class App {
         //----------------------------------------------------------------------------
         //basic_plant
         const hoonOrbit = new THREE.Object3D();
+<<<<<<< Updated upstream
         weSpace.add(hoonOrbit);
+=======
+        hoon.add(hoonOrbit);
+>>>>>>> Stashed changes
 
         const hoonMaterial = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/puple_basic.png')
         });
 
+<<<<<<< Updated upstream
         const hoonMesh = new THREE.Mesh(sphereGeometry,hoonMaterial);
         hoonMesh.scale.set(5,5,5);
+=======
+        const hoonMesh = new THREE.Mesh(sphereGeometry, hoonMaterial);
+        hoonMesh.scale.set(3, 3, 3);
+>>>>>>> Stashed changes
         hoonOrbit.position.x = 20;
         hoonOrbit.add(hoonMesh);
 
         //blueStar
         const hoonOrbit2 = new THREE.Object3D();
+<<<<<<< Updated upstream
         weSpace.add(hoonOrbit2);
+=======
+        hoon.add(hoonOrbit2);
+>>>>>>> Stashed changes
 
         const hoonMaterial2 = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/star.png'),
             transparent:true,
             side : THREE.DoubleSide
         });
+<<<<<<< Updated upstream
         
         const hoonMesh2 = new THREE.Mesh(sphereGeometry,hoonMaterial2);
         hoonMesh2.scale.set(5.05,5.05,5.05);
+=======
+
+        const hoonMesh2 = new THREE.Mesh(sphereGeometry, hoonMaterial2);
+        hoonMesh2.scale.set(3.5, 3.5, 3.5);
+>>>>>>> Stashed changes
         hoonOrbit2.position.x = 20;
         hoonOrbit2.add(hoonMesh2);
 
         //musical notes circle
         const hoonOrbit3 = new THREE.Object3D();
+<<<<<<< Updated upstream
         weSpace.add(hoonOrbit3);
+=======
+        hoon.add(hoonOrbit3);
+>>>>>>> Stashed changes
 
         const hooncircle = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/music_circle2.png'),
@@ -122,8 +149,13 @@ class App {
             side : THREE.DoubleSide,
         });
 
+<<<<<<< Updated upstream
         const hoonMesh3 = new THREE.Mesh(sphereGeometry,hooncircle);
         hoonMesh3.scale.set(7,7,7);
+=======
+        const hoonMesh3 = new THREE.Mesh(sphereGeometry, hooncircle);
+        hoonMesh3.scale.set(6, 6, 6);
+>>>>>>> Stashed changes
         hoonOrbit3.position.x = 20;
         hoonOrbit3.add(hoonMesh3);
 
@@ -160,6 +192,7 @@ class App {
         this._moonOrbit = moonOrbit;
         
         //kyounghoon
+        this._hoon = hoon;
         this._hoonOrbit = hoonOrbit;
         this._hoonOrbit2 = hoonOrbit2;
         this._hooncircle = hooncircle;
@@ -184,10 +217,17 @@ class App {
     update(time){
         time *= 0.001
 
+<<<<<<< Updated upstream
         this._weSpace.rotation.y = time / 2;
         this._earthOrbit.rotation.y = time * 2;
         this._moonOrbit.rotation.y = time * 5;
         
+=======
+        this._sun.rotation.y = time / 2;
+        this._hyun.rotation.y = time / 1.5;
+        this._hoon.rotation.y = time / 4;
+
+>>>>>>> Stashed changes
         //kyounghoon rotation
         this._hoonOrbit.rotation.y += 0.0005;
         this._hoonOrbit2.rotation.y += 0.005;
