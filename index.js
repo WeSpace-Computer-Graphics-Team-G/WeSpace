@@ -364,7 +364,7 @@ class App {
 
         // sh rotation
         this._hyunOrbit.rotation.y += 0.050;
-        this._hyunOrbit2.rotation.y += 0.100;
+        this._hyunOrbit2.rotation.y += 0.001;
     }
 
 }
