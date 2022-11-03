@@ -72,6 +72,9 @@ class App {
         const min = new THREE.Object3D();
         this._scene.add(min);
 
+        const sh = new THREE.Object3D();
+        this._scene.add(sh);    
+
         const radius = 1;
         const widthSegments = 24;
         const heightSegments = 24;
@@ -94,6 +97,9 @@ class App {
 
         const minScale = 2;
         const minPosition = 15;
+
+        const shScale = 3;
+        const shPosition = 36;
 
         //kyounghoon-------------------------------------------------------------------
         //----------------------------------------------------------------------------
@@ -217,8 +223,8 @@ class App {
         });
 
         const shMesh = new THREE.Mesh(sphereGeometry, shMaterial);
-        shMesh.scale.set(5, 5, 5);
-        shOrbit.position.x = 60;
+        shMesh.scale.set(shScale, shScale, shScale);
+        shOrbit.position.x = shPosition;
         shOrbit.add(shMesh);
 
 
@@ -234,8 +240,8 @@ class App {
         });
 
         const shMesh2 = new THREE.Mesh(sphereGeometry, shcircle);
-        shMesh2.scale.set(7, 7, 7);
-        shOrbit2.position.x = 60;
+        shMesh2.scale.set(shScale + 1.5, shScale + 1.5, shScale + 1.5);
+        shOrbit2.position.x = shPosition;
         shOrbit2.add(shMesh2);
 
         //blue star
@@ -250,8 +256,8 @@ class App {
         });
 
         const shMesh3 = new THREE.Mesh(sphereGeometry, shcircle3);
-        shMesh3.scale.set(7, 7, 7);
-        shOrbit3.position.x = 60;
+        shMesh3.scale.set(shScale + 1.5, shScale + 1.5, shScale + 1.5);
+        shOrbit3.position.x = shPosition;
         shOrbit3.add(shMesh3);
 
         //hyun planet-----------------------------------------------------------------
@@ -304,6 +310,7 @@ class App {
         this._minCircle3 = minCircle3;
 
         //sh-----------------------------------------
+        this._sh = sh;
         this._shOrbit = shOrbit;
         this._shOrbit2 = shOrbit2;
         this._shOrbit3 = shOrbit3;
@@ -338,6 +345,7 @@ class App {
         this._hyun.rotation.y = time / 1.5;
         this._hoon.rotation.y = time / 4;
         this._min.rotation.y = time / 3;
+        this._sh.rotation.y = time / 3;
 
         //kyounghoon rotation
         this._hoonOrbit.rotation.y += 0.0005;
