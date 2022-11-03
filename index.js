@@ -89,6 +89,12 @@ class App {
         sunMesh.scale.set(5, 5, 5);
         sun.add(sunMesh);
 
+        const hoonScale = 3;
+        const hoonPosition = 25;
+
+        const minScale = 2;
+        const minPosition = 15;
+
         //kyounghoon-------------------------------------------------------------------
         //----------------------------------------------------------------------------
         //basic_plant
@@ -100,8 +106,8 @@ class App {
         });
 
         const hoonMesh = new THREE.Mesh(sphereGeometry, hoonMaterial);
-        hoonMesh.scale.set(3, 3, 3);
-        hoonOrbit.position.x = 20;
+        hoonMesh.scale.set(hoonScale, hoonScale, hoonScale);
+        hoonOrbit.position.x = hoonPosition;
         hoonOrbit.add(hoonMesh);
 
         //blueStar
@@ -115,8 +121,8 @@ class App {
         });
 
         const hoonMesh2 = new THREE.Mesh(sphereGeometry, hoonMaterial2);
-        hoonMesh2.scale.set(3.5, 3.5, 3.5);
-        hoonOrbit2.position.x = 20;
+        hoonMesh2.scale.set(hoonScale + 0.5, hoonScale + 0.5, hoonScale + 0.5);
+        hoonOrbit2.position.x = hoonPosition;
         hoonOrbit2.add(hoonMesh2);
 
         //musical notes circle
@@ -131,16 +137,13 @@ class App {
         });
 
         const hoonMesh3 = new THREE.Mesh(sphereGeometry, hooncircle);
-        hoonMesh3.scale.set(5, 5, 5);
-        hoonOrbit3.position.x = 20;
+        hoonMesh3.scale.set(hoonScale + 2, hoonScale + 2, hoonScale + 2);
+        hoonOrbit3.position.x = hoonPosition;
         hoonOrbit3.add(hoonMesh3);
         //-----------------------------------------------------------------------------
 
         //minPlanet-----------------------------------------------------------------
         //-------------------------------------------------------------------------
-        
-        const minScale = 1.5;
-        const minPosition = 15;
 
         //basic
         const minOrbit = new THREE.Object3D();
