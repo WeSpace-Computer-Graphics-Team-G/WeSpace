@@ -74,6 +74,9 @@ class App {
         const min = new THREE.Object3D();
         this._scene.add(min);
 
+        const sh = new THREE.Object3D();
+        this._scene.add(sh);
+
         const radius = 1;
         const widthSegments = 24;
         const heightSegments = 24;
@@ -238,7 +241,7 @@ class App {
         //-------------------------------------------------------------------------
         //basic
         const shOrbit = new THREE.Object3D();
-        sun.add(shOrbit);
+        sh.add(shOrbit);
 
         const shMaterial = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/sh_basic.png')
@@ -256,7 +259,7 @@ class App {
 
         //yellow circle
         const shOrbit2 = new THREE.Object3D();
-        sun.add(shOrbit2);
+        sh.add(shOrbit2);
 
         const shcircle = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/sh_circle1.png'),
@@ -272,7 +275,7 @@ class App {
 
         //blue star
         const shOrbit3 = new THREE.Object3D();
-        sun.add(shOrbit3);
+        sh.add(shOrbit3);
 
         const shcircle3 = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/sh_circle2.png'),
@@ -340,6 +343,7 @@ class App {
         this._minCircle3 = minCircle3;
 
         //sh-----------------------------------------
+        this._sh = sh;
         this._shOrbit = shOrbit;
         this._shOrbit2 = shOrbit2;
         this._shOrbit3 = shOrbit3;
