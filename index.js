@@ -60,6 +60,8 @@ class App {
 
 
     _setupModel() {
+        const domEvents = new THREEx.DomEvents(this._camera, this._renderer.domElement);
+
         const sun = new THREE.Object3D();
         this._scene.add(sun);
 
@@ -83,20 +85,36 @@ class App {
         const centerOrbit = new THREE.Object3D();
         sun.add(centerOrbit);
 
+        const linkSun = 'information/class.html';
+        const linkHoon = 'information/hoon.html';
+        const linkMin = 'information/min.html';
+        const linkSh = 'information/sh.html';
+        const linkHyun = 'information/hyun.html';   
+
         const sunMaterial = new THREE.MeshPhongMaterial({
             // emissive: 0xffff00, flatShading: true
             map: THREE.ImageUtils.loadTexture('./image/sun.png')
         });
 
         const sunMesh = new THREE.Mesh(sphereGeometry, sunMaterial);
-        sunMesh.scale.set(5, 5, 5);
+        sunMesh.scale.set(10, 10, 10);
         sun.add(sunMesh);
 
+        domEvents.addEventListener(sunMesh, 'click', event => {
+            location.href = linkSun;
+        })
+
         const hoonScale = 3;
-        const hoonPosition = 25;
+        const hoonPosition = 30;
 
         const minScale = 2;
-        const minPosition = 15;
+        const minPosition = 20;
+
+        const shScale = 3;
+        const shPosition = 42;
+
+        const hyunScale = 1.5;
+        const hyunPosition = 15;
 
         const shScale = 3;
         const shPosition = 36;
@@ -115,6 +133,11 @@ class App {
         hoonMesh.scale.set(hoonScale, hoonScale, hoonScale);
         hoonOrbit.position.x = hoonPosition;
         hoonOrbit.add(hoonMesh);
+        
+        // click event
+        domEvents.addEventListener(hoonMesh, 'click', event => {
+            location.href = linkHoon;
+        })
 
         //blueStar
         const hoonOrbit2 = new THREE.Object3D();
@@ -163,6 +186,11 @@ class App {
         minMesh.scale.set(minScale, minScale, minScale);
         minOrbit.position.x = minPosition;
         minOrbit.add(minMesh);
+
+        // click event
+        domEvents.addEventListener(minMesh, 'click', event => {
+            location.href = linkMin;
+        })
 
         //mint circle1
         const minCircle = new THREE.Object3D();
@@ -227,6 +255,10 @@ class App {
         shOrbit.position.x = shPosition;
         shOrbit.add(shMesh);
 
+        // click event
+        domEvents.addEventListener(shMesh, 'click', event => {
+            location.href = linkSh;
+        })
 
         //yellow circle
         const shOrbit2 = new THREE.Object3D();
@@ -271,10 +303,14 @@ class App {
         });
 
         const hyunMesh = new THREE.Mesh(sphereGeometry, hyunMaterial);
-        hyunMesh.scale.set(1.5, 1.5, 1.5);
-        hyunOrbit.position.x = 10;
+        hyunMesh.scale.set(hyunScale, hyunScale, hyunScale);
+        hyunOrbit.position.x = hyunPosition;
         hyunOrbit.add(hyunMesh);
-
+        
+        // click event
+        domEvents.addEventListener(hyunMesh, 'click', event => {
+            location.href = linkHyun;
+        })
 
         // yellow circle
         const hyunOrbit2 = new THREE.Object3D();
@@ -288,8 +324,8 @@ class App {
         });
 
         const hyunMesh2 = new THREE.Mesh(sphereGeometry, hyunCircle);
-        hyunMesh2.scale.set(3, 3, 3);
-        hyunOrbit2.position.x = 10;
+        hyunMesh2.scale.set(hyunScale + 1.5, hyunScale + 1.5, hyunScale + 1.5);
+        hyunOrbit2.position.x = hyunPosition;
         hyunOrbit2.add(hyunMesh2);
 
 
