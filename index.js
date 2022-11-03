@@ -116,6 +116,9 @@ class App {
         const hyunScale = 1.5;
         const hyunPosition = 15;
 
+        const shScale = 3;
+        const shPosition = 36;
+
         //kyounghoon-------------------------------------------------------------------
         //----------------------------------------------------------------------------
         //basic_plant
