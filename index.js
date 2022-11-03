@@ -60,8 +60,11 @@ class App {
 
 
     _setupModel() {
-        const weSpace = new THREE.Object3D();
-        this._scene.add(weSpace);
+        const sun = new THREE.Object3D();
+        this._scene.add(sun);
+
+        const hyun = new THREE.Object3D();
+        this._scene.add(hyun);
 
         const radius = 1;
         const widthSegments = 24;
@@ -69,7 +72,7 @@ class App {
         const sphereGeometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
 
         const centerOrbit = new THREE.Object3D();
-        weSpace.add(centerOrbit);
+        sun.add(centerOrbit);
 
         const sunMaterial = new THREE.MeshPhongMaterial({
             // emissive: 0xffff00, flatShading: true
@@ -78,13 +81,13 @@ class App {
 
         const sunMesh = new THREE.Mesh(sphereGeometry, sunMaterial);
         sunMesh.scale.set(5, 5, 5);
-        weSpace.add(sunMesh);
+        sun.add(sunMesh);
 
         //kyounghoon-------------------------------------------------------------------
         //----------------------------------------------------------------------------
         //basic_plant
         const hoonOrbit = new THREE.Object3D();
-        weSpace.add(hoonOrbit);
+        sun.add(hoonOrbit);
 
         const hoonMaterial = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/puple_basic.png')
@@ -97,7 +100,7 @@ class App {
 
         //blueStar
         const hoonOrbit2 = new THREE.Object3D();
-        weSpace.add(hoonOrbit2);
+        sun.add(hoonOrbit2);
 
         const hoonMaterial2 = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/star.png'),
@@ -112,7 +115,7 @@ class App {
 
         //musical notes circle
         const hoonOrbit3 = new THREE.Object3D();
-        weSpace.add(hoonOrbit3);
+        sun.add(hoonOrbit3);
 
         const hooncircle = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/music_circle2.png'),
@@ -131,7 +134,7 @@ class App {
         //-------------------------------------------------------------------------
         //basic
         const minOrbit = new THREE.Object3D();
-        weSpace.add(minOrbit);
+        sun.add(minOrbit);
 
         const minMaterial = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/mint_basic.png')
@@ -144,7 +147,7 @@ class App {
 
         //mint circle1
         const minCircle = new THREE.Object3D();
-        weSpace.add(minCircle);
+        sun.add(minCircle);
 
         const mincircle = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/mint_circle1.png'),
@@ -159,7 +162,7 @@ class App {
 
         //mint circle2
         const minCircle2 = new THREE.Object3D();
-        weSpace.add(minCircle2);
+        sun.add(minCircle2);
 
         const mincircle2 = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/mint_circle2.png'),
@@ -174,7 +177,7 @@ class App {
 
         //mint circle3
         const minCircle3 = new THREE.Object3D();
-        weSpace.add(minCircle3);
+        sun.add(minCircle3);
 
         const mincircle3 = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/mint_circle3.png'),
@@ -194,7 +197,7 @@ class App {
         //-------------------------------------------------------------------------
         //basic
         const shOrbit = new THREE.Object3D();
-        weSpace.add(shOrbit);
+        sun.add(shOrbit);
 
         const shMaterial = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/sh_basic.png')
@@ -208,7 +211,7 @@ class App {
 
         //yellow circle
         const shOrbit2 = new THREE.Object3D();
-        weSpace.add(shOrbit2);
+        sun.add(shOrbit2);
 
         const shcircle = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/sh_circle1.png'),
@@ -224,7 +227,7 @@ class App {
 
         //blue star
         const shOrbit3 = new THREE.Object3D();
-        weSpace.add(shOrbit3);
+        sun.add(shOrbit3);
 
         const shcircle3 = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/sh_circle2.png'),
@@ -242,7 +245,7 @@ class App {
         //-------------------------------------------------------------------------
         // basic
         const hyunOrbit = new THREE.Object3D();
-        weSpace.add(hyunOrbit);
+        hyun.add(hyunOrbit);
 
         const hyunMaterial = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/hyun_basic.jpeg')
@@ -256,7 +259,7 @@ class App {
 
         // yellow circle
         const hyunOrbit2 = new THREE.Object3D();
-        weSpace.add(hyunOrbit2);
+        hyun.add(hyunOrbit2);
 
         const hyunCircle = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/hyun_circle1.png'),
@@ -273,7 +276,7 @@ class App {
 
         //------------------------------------------------------------------
 
-        this._weSpace = weSpace;
+        this._sun = sun;
         //kyounghoon
         this._hoonOrbit = hoonOrbit;
         this._hoonOrbit2 = hoonOrbit2;
@@ -291,6 +294,7 @@ class App {
         this._shOrbit3 = shOrbit3;
 
         // hyun-----------------------------------------
+        this._hyun = hyun;
         this._hyunOrbit = hyunOrbit;
         this._hyunOrbit2 = hyunOrbit2;
 
@@ -315,7 +319,8 @@ class App {
     update(time) {
         time *= 0.001
 
-        this._weSpace.rotation.y = time / 2;
+        this._sun.rotation.y = time / 2;
+        this._hyun.rotation.y = time / 1.5;
 
         //kyounghoon rotation
         this._hoonOrbit.rotation.y += 0.0005;
@@ -333,8 +338,8 @@ class App {
         this._shOrbit3.rotation.y += 0.0005;
 
         // sh rotation
-        this._hyunOrbit.rotation.y += 0.003;
-        this._hyunOrbit2.rotation.y += 0.005;
+        this._hyunOrbit.rotation.y += 0.050;
+        this._hyunOrbit2.rotation.y += 0.100;
     }
 
 }
