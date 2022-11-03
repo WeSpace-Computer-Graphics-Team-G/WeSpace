@@ -74,7 +74,7 @@ class App {
          ctx.fill();
          const particlesmaterial = new THREE.PointsMaterial({
          size: 0.3,
-         map: THREE.ImageUtils.loadTexture('./image/cc.png'),
+         map: THREE.ImageUtils.loadTexture('./image/back_star.png'),
          transparent: true,
          });
          const particlesCnt = 2000;
