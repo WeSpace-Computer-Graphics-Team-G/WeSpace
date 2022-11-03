@@ -59,9 +59,18 @@ class App {
     }
 
 
-    _setupModel(){
-        const weSpace = new THREE.Object3D();
-        this._scene.add(weSpace);
+    _setupModel() {
+        const sun = new THREE.Object3D();
+        this._scene.add(sun);
+
+        const hyun = new THREE.Object3D();
+        this._scene.add(hyun);
+
+        const hoon = new THREE.Object3D();
+        this._scene.add(hoon);
+        
+        const min = new THREE.Object3D();
+        this._scene.add(min);
 
         const radius = 1;
         const widthSegments = 24;
@@ -128,22 +137,26 @@ class App {
 
     //minPlanet-----------------------------------------------------------------
         //-------------------------------------------------------------------------
+        
+        const minScale = 1.5;
+        const minPosition = 15;
+
         //basic
         const minOrbit = new THREE.Object3D();
-        weSpace.add(minOrbit);
+        min.add(minOrbit);
 
         const minMaterial = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/mint_basic.png')
         });
 
-        const minMesh = new THREE.Mesh(sphereGeometry,minMaterial);
-        minMesh.scale.set(5,5,5);
-        minOrbit.position.x = 40;
+        const minMesh = new THREE.Mesh(sphereGeometry, minMaterial);
+        minMesh.scale.set(minScale, minScale, minScale);
+        minOrbit.position.x = minPosition;
         minOrbit.add(minMesh);
 
         //mint circle1
         const minCircle = new THREE.Object3D();
-        weSpace.add(minCircle);
+        min.add(minCircle);
 
         const mincircle = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/mint_circle1.png'),
@@ -151,14 +164,14 @@ class App {
             side : THREE.DoubleSide,
         });
 
-        const minCircleMesh1 = new THREE.Mesh(sphereGeometry,mincircle);
-        minCircleMesh1.scale.set(5.05,5.05,5.05);
-        minCircle.position.x = 40;
+        const minCircleMesh1 = new THREE.Mesh(sphereGeometry, mincircle);
+        minCircleMesh1.scale.set(minScale + 0.05, minScale + 0.05, minScale + 0.05);
+        minCircle.position.x = minPosition;
         minCircle.add(minCircleMesh1);
 
         //mint circle2
         const minCircle2 = new THREE.Object3D();
-        weSpace.add(minCircle2);
+        min.add(minCircle2);
 
         const mincircle2 = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/mint_circle2.png'),
@@ -166,14 +179,14 @@ class App {
             side : THREE.DoubleSide,
         });
 
-        const minCircleMesh2 = new THREE.Mesh(sphereGeometry,mincircle2);
-        minCircleMesh2.scale.set(5.1,5.1,5.1);
-        minCircle2.position.x = 40;
+        const minCircleMesh2 = new THREE.Mesh(sphereGeometry, mincircle2);
+        minCircleMesh2.scale.set(minScale + 0.1, minScale + 0.1, minScale + 0.1);
+        minCircle2.position.x = minPosition;
         minCircle2.add(minCircleMesh2);
 
         //mint circle3
         const minCircle3 = new THREE.Object3D();
-        weSpace.add(minCircle3);
+        min.add(minCircle3);
 
         const mincircle3 = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/mint_circle3.png'),
@@ -181,9 +194,9 @@ class App {
             side : THREE.DoubleSide,
         });
 
-        const minCircleMesh3 = new THREE.Mesh(sphereGeometry,mincircle3);
-        minCircleMesh3.scale.set(5.15,5.15,5.15);
-        minCircle3.position.x = 40;
+        const minCircleMesh3 = new THREE.Mesh(sphereGeometry, mincircle3);
+        minCircleMesh3.scale.set(minScale + 0.15, minScale + 0.15, minScale + 0.15);
+        minCircle3.position.x = minPosition;
         minCircle3.add(minCircleMesh3);
 
       //------------------------------------------------------------------
@@ -196,6 +209,7 @@ class App {
         this._hoonOrbit3 = hoonOrbit3;
 
         //min-----------------------------------------
+        this._min = min;
         this._minOrbit = minOrbit;
         this._minCircle = minCircle;
         this._minCircle2 = minCircle2;
@@ -221,7 +235,10 @@ class App {
     update(time){
         time *= 0.001
 
-        this._weSpace.rotation.y = time / 2;
+        this._sun.rotation.y = time / 2;
+        this._hyun.rotation.y = time / 1.5;
+        this._hoon.rotation.y = time / 4;
+        this._min.rotation.y = time / 3;
 
          //kyounghoon rotation
          this._hoonOrbit.rotation.y += 0.0005;
