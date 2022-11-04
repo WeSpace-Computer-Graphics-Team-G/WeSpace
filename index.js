@@ -60,11 +60,58 @@ class App {
 
 
     _setupModel() {
+
+         //particle
+         const particlesGeometry = new THREE.BufferGeometry();
+         const loader = new THREE.TextureLoader();
+         let canvas = document.createElement("canvas");
+         let ctx = canvas.getContext("2d");
+         canvas.height = 100;
+         canvas.width = 100;
+         ctx.fillStyle = "#fff";
+         ctx.beginPath();
+         ctx.arc(50, 50, 25, 0, 2 * Math.PI);
+         ctx.fill();
+         const particlesmaterial = new THREE.PointsMaterial({
+         size: 0.3,
+         map: THREE.ImageUtils.loadTexture('./image/back_star.png'),
+         transparent: true,
+         });
+         const particlesCnt = 2000;
+         const posArray = new Float32Array(particlesCnt * 3);
+         // xyz,xyz,xyz , xyz
+         for (let i = 0; i < particlesCnt * 3; i++) {
+         //posArray[i] = Math.random()
+         //   posArray[i] = Math.random() - 0.5
+         //   posArray[i] = (Math.random() - 0.5) * 5
+         posArray[i] = (Math.random() - 0.5) * (Math.random() * 150);
+         }
+ 
+         particlesGeometry.setAttribute(
+         "position",
+         new THREE.BufferAttribute(posArray, 3)
+         );
+ 
+         const particlesMesh = new THREE.Points(particlesGeometry, particlesmaterial);
+         this._scene.add(particlesMesh);
+
+
+        const domEvents = new THREEx.DomEvents(this._camera, this._renderer.domElement);
+
         const sun = new THREE.Object3D();
         this._scene.add(sun);
 
         const hyun = new THREE.Object3D();
         this._scene.add(hyun);
+
+        const hoon = new THREE.Object3D();
+        this._scene.add(hoon);
+        
+        const min = new THREE.Object3D();
+        this._scene.add(min);
+
+        const sh = new THREE.Object3D();
+        this._scene.add(sh);
 
         const radius = 1;
         const widthSegments = 24;
@@ -74,33 +121,60 @@ class App {
         const centerOrbit = new THREE.Object3D();
         sun.add(centerOrbit);
 
+        const linkSun = 'information/class.html';
+        const linkHoon = 'information/hoon.html';
+        const linkMin = 'information/min.html';
+        const linkSh = 'information/sh.html';
+        const linkHyun = 'information/hyun.html';   
+
         const sunMaterial = new THREE.MeshPhongMaterial({
             // emissive: 0xffff00, flatShading: true
             map: THREE.ImageUtils.loadTexture('./image/sun.png')
         });
 
         const sunMesh = new THREE.Mesh(sphereGeometry, sunMaterial);
-        sunMesh.scale.set(5, 5, 5);
+        sunMesh.scale.set(10, 10, 10);
         sun.add(sunMesh);
+
+        domEvents.addEventListener(sunMesh, 'click', event => {
+            location.href = linkSun;
+        })
+
+        const hoonScale = 3;
+        const hoonPosition = 30;
+
+        const minScale = 2;
+        const minPosition = 20;
+
+        const shScale = 3;
+        const shPosition = 42;
+
+        const hyunScale = 1.5;
+        const hyunPosition = 15;
 
         //kyounghoon-------------------------------------------------------------------
         //----------------------------------------------------------------------------
         //basic_plant
         const hoonOrbit = new THREE.Object3D();
-        sun.add(hoonOrbit);
+        hoon.add(hoonOrbit);
 
         const hoonMaterial = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/puple_basic.png')
         });
 
         const hoonMesh = new THREE.Mesh(sphereGeometry, hoonMaterial);
-        hoonMesh.scale.set(5, 5, 5);
-        hoonOrbit.position.x = 20;
+        hoonMesh.scale.set(hoonScale, hoonScale, hoonScale);
+        hoonOrbit.position.x = hoonPosition;
         hoonOrbit.add(hoonMesh);
+        
+        // click event
+        domEvents.addEventListener(hoonMesh, 'click', event => {
+            location.href = linkHoon;
+        })
 
         //blueStar
         const hoonOrbit2 = new THREE.Object3D();
-        sun.add(hoonOrbit2);
+        hoon.add(hoonOrbit2);
 
         const hoonMaterial2 = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/star.png'),
@@ -109,13 +183,13 @@ class App {
         });
 
         const hoonMesh2 = new THREE.Mesh(sphereGeometry, hoonMaterial2);
-        hoonMesh2.scale.set(5.05, 5.05, 5.05);
-        hoonOrbit2.position.x = 20;
+        hoonMesh2.scale.set(hoonScale + 0.5, hoonScale + 0.5, hoonScale + 0.5);
+        hoonOrbit2.position.x = hoonPosition;
         hoonOrbit2.add(hoonMesh2);
 
         //musical notes circle
         const hoonOrbit3 = new THREE.Object3D();
-        sun.add(hoonOrbit3);
+        hoon.add(hoonOrbit3);
 
         const hooncircle = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/music_circle2.png'),
@@ -125,29 +199,35 @@ class App {
         });
 
         const hoonMesh3 = new THREE.Mesh(sphereGeometry, hooncircle);
-        hoonMesh3.scale.set(7, 7, 7);
-        hoonOrbit3.position.x = 20;
+        hoonMesh3.scale.set(hoonScale + 2, hoonScale + 2, hoonScale + 2);
+        hoonOrbit3.position.x = hoonPosition;
         hoonOrbit3.add(hoonMesh3);
         //-----------------------------------------------------------------------------
 
         //minPlanet-----------------------------------------------------------------
         //-------------------------------------------------------------------------
+
         //basic
         const minOrbit = new THREE.Object3D();
-        sun.add(minOrbit);
+        min.add(minOrbit);
 
         const minMaterial = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/mint_basic.png')
         });
 
         const minMesh = new THREE.Mesh(sphereGeometry, minMaterial);
-        minMesh.scale.set(5, 5, 5);
-        minOrbit.position.x = 40;
+        minMesh.scale.set(minScale, minScale, minScale);
+        minOrbit.position.x = minPosition;
         minOrbit.add(minMesh);
+
+        // click event
+        domEvents.addEventListener(minMesh, 'click', event => {
+            location.href = linkMin;
+        })
 
         //mint circle1
         const minCircle = new THREE.Object3D();
-        sun.add(minCircle);
+        min.add(minCircle);
 
         const mincircle = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/mint_circle1.png'),
@@ -156,13 +236,13 @@ class App {
         });
 
         const minCircleMesh1 = new THREE.Mesh(sphereGeometry, mincircle);
-        minCircleMesh1.scale.set(5.05, 5.05, 5.05);
-        minCircle.position.x = 40;
+        minCircleMesh1.scale.set(minScale + 0.05, minScale + 0.05, minScale + 0.05);
+        minCircle.position.x = minPosition;
         minCircle.add(minCircleMesh1);
 
         //mint circle2
         const minCircle2 = new THREE.Object3D();
-        sun.add(minCircle2);
+        min.add(minCircle2);
 
         const mincircle2 = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/mint_circle2.png'),
@@ -171,13 +251,13 @@ class App {
         });
 
         const minCircleMesh2 = new THREE.Mesh(sphereGeometry, mincircle2);
-        minCircleMesh2.scale.set(5.1, 5.1, 5.1);
-        minCircle2.position.x = 40;
+        minCircleMesh2.scale.set(minScale + 0.1, minScale + 0.1, minScale + 0.1);
+        minCircle2.position.x = minPosition;
         minCircle2.add(minCircleMesh2);
 
         //mint circle3
         const minCircle3 = new THREE.Object3D();
-        sun.add(minCircle3);
+        min.add(minCircle3);
 
         const mincircle3 = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/mint_circle3.png'),
@@ -186,8 +266,8 @@ class App {
         });
 
         const minCircleMesh3 = new THREE.Mesh(sphereGeometry, mincircle3);
-        minCircleMesh3.scale.set(5.15, 5.15, 5.15);
-        minCircle3.position.x = 40;
+        minCircleMesh3.scale.set(minScale + 0.15, minScale + 0.15, minScale + 0.15);
+        minCircle3.position.x = minPosition;
         minCircle3.add(minCircleMesh3);
 
         //------------------------------------------------------------------
@@ -197,21 +277,25 @@ class App {
         //-------------------------------------------------------------------------
         //basic
         const shOrbit = new THREE.Object3D();
-        sun.add(shOrbit);
+        sh.add(shOrbit);
 
         const shMaterial = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/sh_basic.png')
         });
 
         const shMesh = new THREE.Mesh(sphereGeometry, shMaterial);
-        shMesh.scale.set(5, 5, 5);
-        shOrbit.position.x = 60;
+        shMesh.scale.set(shScale, shScale, shScale);
+        shOrbit.position.x = shPosition;
         shOrbit.add(shMesh);
 
+        // click event
+        domEvents.addEventListener(shMesh, 'click', event => {
+            location.href = linkSh;
+        })
 
         //yellow circle
         const shOrbit2 = new THREE.Object3D();
-        sun.add(shOrbit2);
+        sh.add(shOrbit2);
 
         const shcircle = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/sh_circle1.png'),
@@ -221,13 +305,13 @@ class App {
         });
 
         const shMesh2 = new THREE.Mesh(sphereGeometry, shcircle);
-        shMesh2.scale.set(7, 7, 7);
-        shOrbit2.position.x = 60;
+        shMesh2.scale.set(shScale + 1.5, shScale + 1.5, shScale + 1.5);
+        shOrbit2.position.x = shPosition;
         shOrbit2.add(shMesh2);
 
         //blue star
         const shOrbit3 = new THREE.Object3D();
-        sun.add(shOrbit3);
+        sh.add(shOrbit3);
 
         const shcircle3 = new THREE.MeshPhongMaterial({
             map: THREE.ImageUtils.loadTexture('./image/sh_circle2.png'),
@@ -237,8 +321,8 @@ class App {
         });
 
         const shMesh3 = new THREE.Mesh(sphereGeometry, shcircle3);
-        shMesh3.scale.set(7, 7, 7);
-        shOrbit3.position.x = 60;
+        shMesh3.scale.set(shScale + 1.5, shScale + 1.5, shScale + 1.5);
+        shOrbit3.position.x = shPosition;
         shOrbit3.add(shMesh3);
 
         //hyun planet-----------------------------------------------------------------
@@ -252,10 +336,14 @@ class App {
         });
 
         const hyunMesh = new THREE.Mesh(sphereGeometry, hyunMaterial);
-        hyunMesh.scale.set(1.5, 1.5, 1.5);
-        hyunOrbit.position.x = 10;
+        hyunMesh.scale.set(hyunScale, hyunScale, hyunScale);
+        hyunOrbit.position.x = hyunPosition;
         hyunOrbit.add(hyunMesh);
-
+        
+        // click event
+        domEvents.addEventListener(hyunMesh, 'click', event => {
+            location.href = linkHyun;
+        })
 
         // yellow circle
         const hyunOrbit2 = new THREE.Object3D();
@@ -269,8 +357,8 @@ class App {
         });
 
         const hyunMesh2 = new THREE.Mesh(sphereGeometry, hyunCircle);
-        hyunMesh2.scale.set(3, 3, 3);
-        hyunOrbit2.position.x = 10;
+        hyunMesh2.scale.set(hyunScale + 1.5, hyunScale + 1.5, hyunScale + 1.5);
+        hyunOrbit2.position.x = hyunPosition;
         hyunOrbit2.add(hyunMesh2);
 
 
@@ -278,17 +366,20 @@ class App {
 
         this._sun = sun;
         //kyounghoon
+        this._hoon = hoon;
         this._hoonOrbit = hoonOrbit;
         this._hoonOrbit2 = hoonOrbit2;
         this._hoonOrbit3 = hoonOrbit3;
 
         //min-----------------------------------------
+        this._min = min;
         this._minOrbit = minOrbit;
         this._minCircle = minCircle;
         this._minCircle2 = minCircle2;
         this._minCircle3 = minCircle3;
 
         //sh-----------------------------------------
+        this._sh = sh;
         this._shOrbit = shOrbit;
         this._shOrbit2 = shOrbit2;
         this._shOrbit3 = shOrbit3;
@@ -321,6 +412,9 @@ class App {
 
         this._sun.rotation.y = time / 2;
         this._hyun.rotation.y = time / 1.5;
+        this._hoon.rotation.y = time / 4;
+        this._min.rotation.y = time / 3;
+        this._sh.rotation.y = time / 3;
 
         //kyounghoon rotation
         this._hoonOrbit.rotation.y += 0.0005;
@@ -339,7 +433,7 @@ class App {
 
         // sh rotation
         this._hyunOrbit.rotation.y += 0.050;
-        this._hyunOrbit2.rotation.y += 0.100;
+        this._hyunOrbit2.rotation.y += 0.001;
     }
 
 }
