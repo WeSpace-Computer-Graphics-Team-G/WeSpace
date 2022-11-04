@@ -60,6 +60,42 @@ class App {
 
 
     _setupModel() {
+
+         //particle
+         const particlesGeometry = new THREE.BufferGeometry();
+         const loader = new THREE.TextureLoader();
+         let canvas = document.createElement("canvas");
+         let ctx = canvas.getContext("2d");
+         canvas.height = 100;
+         canvas.width = 100;
+         ctx.fillStyle = "#fff";
+         ctx.beginPath();
+         ctx.arc(50, 50, 25, 0, 2 * Math.PI);
+         ctx.fill();
+         const particlesmaterial = new THREE.PointsMaterial({
+         size: 0.3,
+         map: THREE.ImageUtils.loadTexture('./image/back_star.png'),
+         transparent: true,
+         });
+         const particlesCnt = 2000;
+         const posArray = new Float32Array(particlesCnt * 3);
+         // xyz,xyz,xyz , xyz
+         for (let i = 0; i < particlesCnt * 3; i++) {
+         //posArray[i] = Math.random()
+         //   posArray[i] = Math.random() - 0.5
+         //   posArray[i] = (Math.random() - 0.5) * 5
+         posArray[i] = (Math.random() - 0.5) * (Math.random() * 150);
+         }
+ 
+         particlesGeometry.setAttribute(
+         "position",
+         new THREE.BufferAttribute(posArray, 3)
+         );
+ 
+         const particlesMesh = new THREE.Points(particlesGeometry, particlesmaterial);
+         this._scene.add(particlesMesh);
+
+
         const domEvents = new THREEx.DomEvents(this._camera, this._renderer.domElement);
 
         const sun = new THREE.Object3D();
@@ -115,7 +151,6 @@ class App {
 
         const hyunScale = 1.5;
         const hyunPosition = 15;
-
 
         //kyounghoon-------------------------------------------------------------------
         //----------------------------------------------------------------------------
