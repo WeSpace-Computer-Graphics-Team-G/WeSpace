@@ -35,9 +35,8 @@ class App {
             0.1,
             100
         );
-        // camera.position.z = 25;
 
-        camera.position.set(0, 50, 0);
+        camera.position.set(0, 20, -70);
         camera.up.set(0, 0, 1);
         camera.lookAt(0, 0, 0);
 
@@ -48,10 +47,26 @@ class App {
         const color = 0xffffff;
         // const intensity = 3;
         // const light = new THREE.PointLight(color, intensity);
-        const intensity = 1;
+        const intensity = 0.5;
         const light = new THREE.DirectionalLight(color, intensity);
-        light.position.set(-1, 2, 4);
+        light.position.set(3, 0, 0);
         this._scene.add(light);
+        const light2 = new THREE.DirectionalLight(color, intensity);
+        light2.position.set(-3, 0, 0);
+        this._scene.add(light2);
+        const light3 = new THREE.DirectionalLight(color, intensity);
+        light3.position.set(0, -3, 0);
+        this._scene.add(light2);
+        const light4 = new THREE.DirectionalLight(color, intensity);
+        light4.position.set(0, 3, 0);
+        this._scene.add(light4);
+        const light5 = new THREE.DirectionalLight(color, intensity);
+        light5.position.set(0, 0, 3);
+        this._scene.add(light5);
+        const light6 = new THREE.DirectionalLight(color, intensity);
+        light6.position.set(0, 0, -3);
+        this._scene.add(light6);
+
 
         // add ambient
         const ambientLight = new THREE.AmbientLight(0x404040);
@@ -60,10 +75,8 @@ class App {
 
 
     _setupModel() {
-
          //particle
          const particlesGeometry = new THREE.BufferGeometry();
-         const loader = new THREE.TextureLoader();
          let canvas = document.createElement("canvas");
          let ctx = canvas.getContext("2d");
          canvas.height = 100;
@@ -125,7 +138,9 @@ class App {
         const linkHoon = 'information/hoon.html';
         const linkMin = 'information/min.html';
         const linkSh = 'information/sh.html';
-        const linkHyun = 'information/hyun.html';   
+        const linkHyun = 'information/hyun.html';
+
+        const sunScale = 10;
 
         const sunMaterial = new THREE.MeshPhongMaterial({
             // emissive: 0xffff00, flatShading: true
@@ -133,24 +148,38 @@ class App {
         });
 
         const sunMesh = new THREE.Mesh(sphereGeometry, sunMaterial);
-        sunMesh.scale.set(10, 10, 10);
+        sunMesh.scale.set(sunScale, sunScale, sunScale);
         sun.add(sunMesh);
+
+        const sunCircleOrbit = new THREE.Object3D();
+        sun.add(sunCircleOrbit);
+
+        const sunCircleMaterial = new THREE.MeshPhongMaterial({
+            map: THREE.ImageUtils.loadTexture('./image/sun_circle2.png'),
+            opacity: 0.9,
+            transparent: true,
+            side: THREE.DoubleSide,
+        });
+
+        const sunCircleMesh = new THREE.Mesh(sphereGeometry, sunCircleMaterial);
+        sunCircleMesh.scale.set(sunScale + 2, sunScale + 2, sunScale + 2);
+        sunCircleOrbit.add(sunCircleMesh);
 
         domEvents.addEventListener(sunMesh, 'click', event => {
             location.href = linkSun;
         })
 
         const hoonScale = 3;
-        const hoonPosition = 30;
+        const hoonPosition = 35;
 
         const minScale = 2;
-        const minPosition = 20;
+        const minPosition = 25;
 
         const shScale = 3;
-        const shPosition = 42;
+        const shPosition = 47;
 
         const hyunScale = 1.5;
-        const hyunPosition = 15;
+        const hyunPosition = 17;
 
         //kyounghoon-------------------------------------------------------------------
         //----------------------------------------------------------------------------

@@ -113,9 +113,9 @@ window.onload = function init()
    });
 
    loader.load('../information/min_src/crystal_flowers/scene.gltf',function(gltf){
-      eagle2 = gltf.scene.children[0];
-      eagle2.scale.set(0.2,0.2,0.2);
-      eagle2.position.set(-160,-150,-50);
+	  crystal = gltf.scene.children[0];
+	  crystal.scale.set(0.2,0.2,0.2);
+	  crystal.position.set(-160,-150,-50);
       scene.add(gltf.scene);
       animate();
    }, undefined, function(error){
@@ -144,6 +144,7 @@ window.onload = function init()
 
    loader.load('../information/min_src/cute_spino/scene.gltf',function(gltf){
       dino = gltf.scene.children[0];
+	  dinoMesh = gltf.scene.children[3];
       dino.scale.set(25,25,25);
       dino.position.set(-20,18,0);
       scene.add(gltf.scene);
