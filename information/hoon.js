@@ -50,8 +50,7 @@ window.onload = function init()
 	});
 
 	//Whale 3D model -----------------------------------------------------------------------
-	const loader2 = new THREE.GLTFLoader();
-	loader2.load('whale/scene.gltf',function(gltf){
+	loader.load('whale/scene.gltf',function(gltf){
 		whale = gltf.scene.children[0];
 		whale.scale.set(0.6,0.6,0.6);
 		whale.position.set(0,5,5);
@@ -62,8 +61,7 @@ window.onload = function init()
 	});
 
 	//Cloud1 3D model -----------------------------------------------------------------------
-	const loader3 = new THREE.GLTFLoader();
-	loader3.load('stylized_clouds/scene.gltf',function(gltf){
+	loader.load('stylized_clouds/scene.gltf',function(gltf){
 		cloud = gltf.scene.children[0];
 		cloud.scale.set(0.01,0.01,0.01);
 		cloud.position.set(-6,-3,5);
@@ -76,8 +74,7 @@ window.onload = function init()
 	});
 
 	//Cloud2 3D model -----------------------------------------------------------------------
-	const loader4 = new THREE.GLTFLoader();
-	loader4.load('stylized_clouds/scene.gltf',function(gltf){
+	loader.load('stylized_clouds/scene.gltf',function(gltf){
 		cloud2 = gltf.scene.children[0];
 		cloud2.scale.set(0.01,0.01,0.01);
 		cloud2.position.set(0,-3,-3);
@@ -89,9 +86,20 @@ window.onload = function init()
 		console.error(error);
 	});
 
+	//Crystal 3D model -----------------------------------------------------------------------
+	loader.load('glowing_crystals/scene.gltf',function(gltf){
+		crystal = gltf.scene.children[0];
+		crystal.scale.set(20,20,20);
+		crystal.position.set(-5,-5,-12);
+		scene.add(gltf.scene);
+		animate();
+	}, undefined, function(error){
+		console.error(error);
+	});
+
 	//Text model-----------------------------------------------------------------------
-	const loadText1  = new THREE.FontLoader();
-	loadText1.load('Do Hyeon_Regular.json',function(font){
+	const loadText  = new THREE.FontLoader();
+	loadText.load('Do Hyeon_Regular.json',function(font){
 		const geometry = new THREE.TextGeometry('Hello',{
 			font: font,
 			size:3,
@@ -112,8 +120,7 @@ window.onload = function init()
 	});
 
 	//Text2 model-----------------------------------------------------------------------
-    const loadText2  = new THREE.FontLoader();
-	loadText2.load('Do Hyeon_Regular.json',function(font){
+	loadText.load('Do Hyeon_Regular.json',function(font){
 		const geometry = new THREE.TextGeometry('Student ID : 201735809\nName : 김경훈\nMajor : Software',{
 			font: font,
 			size:0.5,
@@ -133,8 +140,7 @@ window.onload = function init()
 	});
 
 	//Text3 model-----------------------------------------------------------------------
-    const loadText3  = new THREE.FontLoader();
-	loadText3.load('Do Hyeon_Regular.json',function(font){
+	loadText.load('Do Hyeon_Regular.json',function(font){
 		const geometry = new THREE.TextGeometry('Note :\n I made this planet with the motif of bubble\n This is designed with things that symbolize me',{
 			font: font,
 			size:0.4,
@@ -142,7 +148,7 @@ window.onload = function init()
 			curveSegments:12,
 			
 		});
-		geometry.translate(2,-1,0);
+		geometry.translate(2,-0.7,0);
 
 		var material = new THREE.MeshBasicMaterial({
 			color : 0xffffff,
@@ -154,9 +160,9 @@ window.onload = function init()
 	});
 
 	//Text4 model -----------------------------------------------------------------------
-    const loadText4  = new THREE.FontLoader();
-	loadText4.load('Do Hyeon_Regular.json',function(font){
-		const geometry = new THREE.TextGeometry(' - Constellaion : I like to see the night sky\n - Musical note ring : I like to listen to music\n - Dolphine and Whale : My hobby is swimming\n - Clouds : It is somthing that relaxes my mind',{
+	loadText.load('Do Hyeon_Regular.json',function(font){
+		const geometry = new THREE.TextGeometry(' - Constellaion : I like to see the night sky\n - Musical note ring : I like to listen to music\n - Dolphine and Whale : My hobby is swimming\n - Clouds : It is somthing that relaxes my mind'+
+		'\n - Crystal : I like winter\n - Falling bubbles : My planet is inspired by bubble',{
 			font: font,
 			size:0.35,
 			height:0,
