@@ -153,6 +153,8 @@ window.onload = function init()
       console.error(error);
    });
 
+
+
 	render();
 
 	function render() {
@@ -215,6 +217,9 @@ window.onload = function init()
 		spaceship.position.y = Math.sin(rot) * 80;
 		spaceship.rotation.z = 3.14;
 		crystal2.rotation.y = -3.14;
+		light.position.z = Math.cos(rot*2) * 100;
+		light.position.y = Math.sin(rot*2) * 100;
+		light.position.x = Math.cos(rot*2) * 100;
 
 		renderer.render(scene,camera);
 		requestAnimationFrame(animate);
