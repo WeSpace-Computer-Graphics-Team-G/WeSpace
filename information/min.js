@@ -7,7 +7,7 @@ window.onload = function init()
 	
 	var radius   = 30,
 		segments = 32,
-		rotation = 6;  
+		rotation = 6;
 
 	var scene = new THREE.Scene();
 
@@ -16,12 +16,8 @@ window.onload = function init()
 
 	scene.add(new THREE.AmbientLight(0x333333));
 
-	var light = new THREE.DirectionalLight(0xffffff, 1);
-	light.position.set(5,3,5);
-	scene.add(light);
-
-	var light = new THREE.DirectionalLight(0xffffff, 1);
-	light.position.set(-5,0,0);
+	var light = new THREE.DirectionalLight(0xffffff, 0.8);
+	light.position.set(0,0,5);
 	scene.add(light);
 
 	var sphere = createSphere(radius, segments);
@@ -67,11 +63,11 @@ window.onload = function init()
 	loadText1.load('Do Hyeon_Regular.json',function(font){
 		const geometry2 = new THREE.TextGeometry('Introduction', {
 			font: font,
-			size:12,
+			size:22,
 			height:0,
 			curveSegments:12
 		});
-		geometry2.translate(40,-10,0);
+		geometry2.translate(40,-10,-200);
 
 		var mesh2 = new THREE.Mesh(geometry2, material);
 		scene.add(mesh2);
@@ -83,11 +79,11 @@ window.onload = function init()
 		+ 'Also, I love nature. So I add maple leaves and flowers.\n'
 		+ 'Finally, the dinosaur is just cute, so I put it in.', {
 			font: font,
-			size:6,
+			size:10,
 			height:0,
 			curveSegments:12
 		});
-		geometry3.translate(-5,-35,0);
+		geometry3.translate(-5,-55,-200);
 
 		var mesh3 = new THREE.Mesh(geometry3, material);
 		scene.add(mesh3);
